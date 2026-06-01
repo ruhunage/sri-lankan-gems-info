@@ -17,7 +17,7 @@ Welcome to the **Sri Lankan Gems Info** project! This web platform serves as an 
 - **Google Fonts:** Poppins typography.
 
 ## 🚀 Live Demo
-[Click here to visit the website](https://yourusername.github.io/sri-lankan-gems-info/)
+https://ruhunage.github.io/sri-lankan-gems-info/
 
 ## 📝 Designed By
 **Navodya Ruhunage** | 2026
