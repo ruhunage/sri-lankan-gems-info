@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎 Sri Lankan Gems Info 💎</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #0a192f; font-family: 'Poppins', sans-serif; color: #e6f1ff; margin: 0; }
+        .navbar { background: #112240; padding: 20px; display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid #64ffda; flex-wrap: wrap; }
+        .navbar a { color: #64ffda; text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer; }
+        header { text-align: center; padding: 50px 20px; }
+        h1 { color: #64ffda; font-size: 48px; margin-bottom: 10px; }
+        .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 40px 40px 40px; }
+        section { background: #112240; padding: 25px; border-radius: 15px; border: 1px solid #233554; }
+        h2 { color: #64ffda; display: flex; align-items: center; gap: 10px; }
+        .btn { background: transparent; border: 1px solid #64ffda; color: #64ffda; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+        .btn:hover { background: #64ffda; color: #0a192f; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+        .gallery-grid img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; padding: 20px; }
+        .modal-content { background: #112240; border: 1px solid #64ffda; padding: 30px; border-radius: 15px; max-width: 900px; margin: 50px auto; color: #e6f1ff; position: relative; }
+        .close { position: fixed; top: 20px; right: 40px; font-size: 40px; color: #64ffda; cursor: pointer; }
+        .full-view { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); text-align: center; }
+        .full-view img { max-width: 90%; max-height: 80%; margin-top: 50px; border: 3px solid #64ffda; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a onclick="openModal('gemModal')"><i class="fas fa-gem"></i> Gem Types</a>
+        <a onclick="openModal('compareModal')"><i class="fas fa-list"></i> Properties</a>
+        <a onclick="openModal('allModal')"><i class="fas fa-images"></i> Gallery</a>
+        <a onclick="openModal('foundModal')"><i class="fas fa-map-marker-alt"></i> Where Found</a>
+        <a onclick="openModal('formationModal')"><i class="fas fa-mountain"></i> Formation</a>
+        <a onclick="openModal('industryModal')"><i class="fas fa-industry"></i> Gem Industry</a>
+    </nav>
+
+    <header>
+        <h1><i class="fas fa-gem" style="color: #64ffda;"></i> Sri Lankan Gems Info <i class="fas fa-diamond" style="color: #64ffda;"></i></h1>
+        <p>Discover the beauty of natural gemstones of Sri Lanka</p>
+    </header>
+
+    <main class="grid-container">
+        <section>
+            <h2><i class="fas fa-gem"></i> Gem Types</h2>
+            <p>Explore the diverse range of natural gemstones.</p>
+            <button class="btn" onclick="openModal('gemModal')">Learn More</button>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-list"></i> Properties</h2>
+            <p>Understand the hardness, color, and rarity.</p>
+            <button class="btn" onclick="openModal('compareModal')">Compare Gems</button>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-images"></i> Gallery</h2>
+            <select id="gemDropdown" onchange="filterGallery()" style="width: 100%; padding: 8px; background: #0a192f; color: #64ffda; border: 1px solid #64ffda; border-radius: 5px;">
+                <option value="all">All Gems</option>
+                <option value="Blue Sapphire">Blue Sapphire</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Cat's Eye">Cat's Eye</option>
+                <option value="Alexandrite">Alexandrite</option>
+                <option value="Spinel">Spinel</option>
+                <option value="Garnet">Garnet</option>
+                <option value="Tourmaline">Tourmaline</option>
+                <option value="Zircon">Zircon</option>
+                <option value="Moonstone">Moonstone</option>
+            </select>
+            <div class="gallery-grid" id="galleryGrid">
+                <img src="images/Blue Sapphire1.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire2.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire3.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire4.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire5.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire6.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire7.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Blue Sapphire8.jpg" data-gem="Blue Sapphire" onclick="showFull(this.src)">
+                <img src="images/Ruby1.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby2.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby3.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby4.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby5.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby6.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby7.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Ruby8.jpg" data-gem="Ruby" onclick="showFull(this.src)">
+                <img src="images/Cat's Eye1.jpg" data-gem="Cat's Eye" onclick="showFull(this.src)">
+                <img src="images/Cat's Eye2.jpg" data-gem="Cat's Eye" onclick="showFull(this.src)">
+                <img src="images/Cat's Eye3.jpg" data-gem="Cat's Eye" onclick="showFull(this.src)">
+                <img src="images/Cat's Eye4.jpg" data-gem="Cat's Eye" onclick="showFull(this.src)">
+                <img src="images/Cat's Eye5.jpg" data-gem="Cat's Eye" onclick="showFull(this.src)">
+                <img src="images/Alexandrite1.jpg" data-gem="Alexandrite" onclick="showFull(this.src)">
+                <img src="images/Alexandrite2.jpg" data-gem="Alexandrite" onclick="showFull(this.src)">
+                <img src="images/Alexandrite3.jpg" data-gem="Alexandrite" onclick="showFull(this.src)">
+                <img src="images/Alexandrite4.jpg" data-gem="Alexandrite" onclick="showFull(this.src)">
+                <img src="images/Spinel1.jpg" data-gem="Spinel" onclick="showFull(this.src)">
+                <img src="images/Spinel2.jpg" data-gem="Spinel" onclick="showFull(this.src)">
+                <img src="images/Spinel3.jpg" data-gem="Spinel" onclick="showFull(this.src)">
+                <img src="images/Spinel4.jpg" data-gem="Spinel" onclick="showFull(this.src)">
+                <img src="images/Spinel5.jpg" data-gem="Spinel" onclick="showFull(this.src)">
+                <img src="images/Garnet1.jpg" data-gem="Garnet" onclick="showFull(this.src)">
+                <img src="images/Garnet2.jpg" data-gem="Garnet" onclick="showFull(this.src)">
+                <img src="images/Tourmaline1.jpg" data-gem="Tourmaline" onclick="showFull(this.src)">
+                <img src="images/Tourmaline2.jpg" data-gem="Tourmaline" onclick="showFull(this.src)">
+                <img src="images/Tourmaline3.jpg" data-gem="Tourmaline" onclick="showFull(this.src)">
+                <img src="images/Tourmaline4.jpg" data-gem="Tourmaline" onclick="showFull(this.src)">
+                <img src="images/Zircon1.jpg" data-gem="Zircon" onclick="showFull(this.src)">
+                <img src="images/Zircon2.jpg" data-gem="Zircon" onclick="showFull(this.src)">
+                <img src="images/Zircon3.jpg" data-gem="Zircon" onclick="showFull(this.src)">
+                <img src="images/Moonstone1.jpg" data-gem="Moonstone" onclick="showFull(this.src)">
+                <img src="images/Moonstone2.jpg" data-gem="Moonstone" onclick="showFull(this.src)">
+            </div>
+            <button class="btn" onclick="openModal('allModal')">View All</button>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-map-marker-alt"></i> Where Found</h2>
+            <p>Sri Lanka, known as 'Ratna Dweepa', holds vast deposits of precious stones. The gem-rich alluvial gravels, locally known as 'Illam', are primarily found in Ratnapura, Elahera, and Balangoda regions, which are world-renowned for their geological wealth.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-mountain"></i> Formation</h2>
+            <p>Gemstones are formed over millions of years deep within the earth's crust. Through extreme geological processes—intense heat and high pressure—mineral-rich rocks transform into crystalline structures. Most Sri Lankan gems originate from metamorphic rocks, weathered and transported by water into alluvial deposits.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-industry"></i> Gem Industry</h2>
+            <p>The Sri Lankan gem industry is a cornerstone of the national economy, globally celebrated for ethical mining practices, traditional artisan cutting, and precision faceting. It encompasses a complete value chain from local gem pits to high-end international trade, ensuring sustainability and exquisite craftsmanship.</p>
+        </section>
+    </main>
+
+    <div style="text-align: center; color: #64ffda; margin-top: 40px; margin-bottom: 20px; font-size: 15px;">
+        <i class="fas fa-gem"></i> Designed by <strong style="color: #fff;">Navodya Ruhunage</strong> <i class="fas fa-diamond"></i> | 2026
+    </div>
+
+    <!-- Modals (Including new ones) -->
+    <div id="gemModal" class="modal">
+        <div class="modal-content" style="background: transparent; border: none; max-width: 800px; margin: 50px auto; display: block;">
+            <span class="close" onclick="closeModal('gemModal')" style="position: fixed; right: 20px; top: 10px;">&times;</span>
+            <h2 style="color: #64ffda; text-align: center; margin-bottom: 30px;">Gemstone Details</h2>
+            <div class="gem-details-list">
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Blue Sapphire:</strong> 
+                    This is a very strong and valuable gemstone that represents wisdom and loyalty. It is famous for its deep, royal blue color and is very popular for high-quality jewelry because it is hard enough for daily use.
+                </div>
+                <!-- (Other items remain the same...) -->
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Ruby:</strong> 
+                    Known as the "king of gems," it is celebrated for its intense and bright red color. It is extremely durable and is often chosen for special pieces like engagement rings because of its lasting value.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Cat's Eye:</strong> 
+                    This stone is truly unique because of its special light effect called "chatoyancy". When you look at it, a thin line of light moves across the surface, which looks exactly like the eye of a cat.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Alexandrite:</strong> 
+                    This is a rare and mysterious gemstone that has the amazing ability to change its color. It appears green in natural sunlight but turns to a reddish-purple color when seen under indoor lamp light.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Spinel:</strong> 
+                    Spinel is a wonderful, natural gemstone that is often appreciated for its wide variety of bright colors. Because it has great clarity and is very durable, it is a fantastic and high-quality alternative to more expensive stones.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Garnet:</strong> 
+                    Many people think garnets are only dark red, but they actually come in almost every color of the rainbow. It is an ancient stone that symbolizes energy and lasting friendship, making it a meaningful gift.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Tourmaline:</strong> 
+                    This is often called the "rainbow gemstone" because of its incredible range of colors. Sometimes, a single piece of tourmaline can even show two or three different colors at the same time, which makes it very popular for artistic jewelry.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Zircon:</strong> 
+                    Zircon is one of the oldest minerals on Earth and is known for its incredible sparkle. It has a high ability to reflect light, which gives it a brilliance that is very similar to a diamond.
+                </div>
+                <div class="gem-item" style="background: #112240; padding: 20px; border-left: 5px solid #64ffda; border-radius: 5px; margin-bottom: 25px; line-height: 1.6; color: #e6f1ff;">
+                    <strong style="color: #64ffda; font-size: 20px; display: block; margin-bottom: 8px;">Moonstone:</strong> 
+                    This stone looks very soft, magical, and elegant. It has a glowing, milky sheen that seems to float across the surface, which reminds people of the soft light of the moon at night.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for new info -->
+    <div id="foundModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('foundModal')">&times;</span><h2>Where Found</h2><p style="font-size: 18px; line-height: 1.8;">Sri Lanka is globally recognized as the "Ratna Dweepa" (Gem Island). The primary sources of these precious stones are the secondary alluvial deposits known as 'Illam'. The most significant gem-bearing regions are Ratnapura (the City of Gems), Elahera, and Balangoda. These areas contain rich gravels deposited over aeons by ancient river systems, where heavy gemstones settle and are harvested using both traditional and modern mining methods.</p></div></div>
+    <div id="formationModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('formationModal')">&times;</span><h2>Formation</h2><p style="font-size: 18px; line-height: 1.8;">The creation of gemstones is a complex geological process that spans millions of years. Most of Sri Lanka's high-quality gemstones are formed within metamorphic rocks such as marble and granulite. These rocks are subjected to extreme geothermal heat and immense tectonic pressure deep within the earth's crust, causing minerals to recrystallize into beautiful, stable geometric structures. Over time, erosion wears down these host rocks, and water currents transport the resistant, hard gemstones into the riverbeds where they are eventually discovered.</p></div></div>
+    <div id="industryModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('industryModal')">&times;</span><h2>Gem Industry</h2><p style="font-size: 18px; line-height: 1.8;">The Sri Lankan gem industry represents a sophisticated and highly sustainable sector. It is built upon a legacy of centuries-old mining techniques combined with state-of-the-art lapidary technology. The industry adheres to ethical mining practices that prioritize environmental conservation. From the initial mining and sorting stages to precision cutting, heat treatment for color enhancement, and final certification, Sri Lanka maintains an end-to-end supply chain that serves international luxury markets worldwide.</p></div></div>
+
+    <div id="compareModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('compareModal')">&times;</span>
+            <h2>Gemstone Comparison</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; color: white;">
+                <thead><tr style="border-bottom: 2px solid #64ffda;"><th style="padding: 12px;">Gemstone</th><th style="padding: 12px;">Hardness (Mohs)</th><th style="padding: 12px;">Refractive Index</th><th style="padding: 12px;">Main Use</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 12px;">Blue Sapphire</td><td>9</td><td>1.76-1.77</td><td>Fine Jewelry</td></tr>
+                    <tr><td style="padding: 12px;">Ruby</td><td>9</td><td>1.76-1.77</td><td>Engagement Rings</td></tr>
+                    <tr><td style="padding: 12px;">Cat's Eye</td><td>8.5</td><td>1.74-1.75</td><td>Unique Jewelry</td></tr>
+                    <tr><td style="padding: 12px;">Alexandrite</td><td>8.5</td><td>1.74-1.75</td><td>Collector's Items</td></tr>
+                    <tr><td style="padding: 12px;">Spinel</td><td>8</td><td>1.71-1.73</td><td>High-end Jewelry</td></tr>
+                    <tr><td style="padding: 12px;">Garnet</td><td>6.5-7.5</td><td>1.71-1.88</td><td>Versatile Jewelry</td></tr>
+                    <tr><td style="padding: 12px;">Tourmaline</td><td>7-7.5</td><td>1.61-1.64</td><td>Artistic Jewelry</td></tr>
+                    <tr><td style="padding: 12px;">Zircon</td><td>7.5</td><td>1.92-1.98</td><td>Diamond Alternative</td></tr>
+                    <tr><td style="padding: 12px;">Moonstone</td><td>6-6.5</td><td>1.51-1.53</td><td>Fashion Jewelry</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="allModal" class="modal">
+        <div class="modal-content" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+            <span class="close" onclick="closeModal('allModal')">&times;</span>
+            <img src="images/Blue Sapphire1.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire2.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire3.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire4.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire5.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire6.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire7.jpg" onclick="showFull(this.src)"><img src="images/Blue Sapphire8.jpg" onclick="showFull(this.src)"><img src="images/Ruby1.jpg" onclick="showFull(this.src)"><img src="images/Ruby2.jpg" onclick="showFull(this.src)"><img src="images/Ruby3.jpg" onclick="showFull(this.src)"><img src="images/Ruby4.jpg" onclick="showFull(this.src)"><img src="images/Ruby5.jpg" onclick="showFull(this.src)"><img src="images/Ruby6.jpg" onclick="showFull(this.src)"><img src="images/Ruby7.jpg" onclick="showFull(this.src)"><img src="images/Ruby8.jpg" onclick="showFull(this.src)"><img src="images/Cat's Eye1.jpg" onclick="showFull(this.src)"><img src="images/Cat's Eye2.jpg" onclick="showFull(this.src)"><img src="images/Cat's Eye3.jpg" onclick="showFull(this.src)"><img src="images/Cat's Eye4.jpg" onclick="showFull(this.src)"><img src="images/Cat's Eye5.jpg" onclick="showFull(this.src)"><img src="images/Alexandrite1.jpg" onclick="showFull(this.src)"><img src="images/Alexandrite2.jpg" onclick="showFull(this.src)"><img src="images/Alexandrite3.jpg" onclick="showFull(this.src)"><img src="images/Alexandrite4.jpg" onclick="showFull(this.src)"><img src="images/Spinel1.jpg" onclick="showFull(this.src)"><img src="images/Spinel2.jpg" onclick="showFull(this.src)"><img src="images/Spinel3.jpg" onclick="showFull(this.src)"><img src="images/Spinel4.jpg" onclick="showFull(this.src)"><img src="images/Spinel5.jpg" onclick="showFull(this.src)"><img src="images/Garnet1.jpg" onclick="showFull(this.src)"><img src="images/Garnet2.jpg" onclick="showFull(this.src)"><img src="images/Tourmaline1.jpg" onclick="showFull(this.src)"><img src="images/Tourmaline2.jpg" onclick="showFull(this.src)"><img src="images/Tourmaline3.jpg" onclick="showFull(this.src)"><img src="images/Tourmaline4.jpg" onclick="showFull(this.src)"><img src="images/Zircon1.jpg" onclick="showFull(this.src)"><img src="images/Zircon2.jpg" onclick="showFull(this.src)"><img src="images/Zircon3.jpg" onclick="showFull(this.src)"><img src="images/Moonstone1.jpg" onclick="showFull(this.src)"><img src="images/Moonstone2.jpg" onclick="showFull(this.src)">
+        </div>
+    </div>
+
+    <div id="fullView" class="full-view" onclick="this.style.display='none'">
+        <img id="bigImg">
+    </div>
+
+    <script>
+        function openModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        
+        function showFull(src) { document.getElementById("fullView").style.display = "block"; document.getElementById("bigImg").src = src; }
+        
+        function filterGallery() {
+            let selectedGem = document.getElementById("gemDropdown").value;
+            let images = document.getElementById("galleryGrid").getElementsByTagName("img");
+            for (let img of images) {
+                img.style.display = (selectedGem === "all" || img.getAttribute("data-gem") === selectedGem) ? "block" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
